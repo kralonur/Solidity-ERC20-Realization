@@ -7,7 +7,7 @@ async function main() {
 
   await erc20Token.deployed();
 
-  console.log("ERC20Token deployed to:", owner.address);
+  console.log("ERC20Token deployed to:", erc20Token.address);
 }
 
 main().catch((error) => {
