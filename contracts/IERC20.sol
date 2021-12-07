@@ -56,4 +56,24 @@ interface IERC20 {
         address recipient,
         uint256 amount
     ) external returns (bool);
+
+    /**
+     * @dev Emitted when given amount of token transferred between two accounts.
+     * @param from sender of tokens.
+     * @param to tokens recipient address.
+     * @param amount amount being sent to recipient.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 amount);
+
+    /**
+     * @dev Emitted when the allowance is set between accounts.
+     * @param owner owner of tokens.
+     * @param spender tokens spender address.
+     * @param amount amount being approved.
+     */
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 amount
+    );
 }

@@ -93,6 +93,7 @@ contract ERC20Token is IERC20 {
 
         _totalSupply += amount;
         _addressBalance[account] += amount;
+        emit Transfer(address(0), account, amount);
     }
 
     /**
@@ -107,6 +108,7 @@ contract ERC20Token is IERC20 {
 
         _totalSupply -= amount;
         _addressBalance[account] -= amount;
+        emit Transfer(account, address(0), amount);
     }
 
     /**
@@ -129,6 +131,7 @@ contract ERC20Token is IERC20 {
 
         _addressBalance[sender] -= amount;
         _addressBalance[recipient] += amount;
+        emit Transfer(sender, recipient, amount);
     }
 
     /**
@@ -146,5 +149,6 @@ contract ERC20Token is IERC20 {
         require(spender != address(0), "Spender address cannot be 0");
 
         _ownerSpenderAllowance[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
     }
 }
