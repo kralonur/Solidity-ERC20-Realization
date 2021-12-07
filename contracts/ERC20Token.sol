@@ -121,7 +121,7 @@ contract ERC20Token is IERC20 {
         uint256 amount
     ) private {
         require(sender != address(0), "Sender address cannot be 0");
-        require(recipient != address(0), "Recipientsol address cannot be 0");
+        require(recipient != address(0), "Recipient address cannot be 0");
         require(
             _addressBalance[sender] >= amount,
             "Amount exceeds the sender's balance"
