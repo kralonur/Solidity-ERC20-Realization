@@ -171,4 +171,37 @@ describe("ERC20Token", function () {
         expect(await contract.allowance(owner.address, accounts[1].address))
             .to.equal(0);
     });
+
+    it("Should emit Transfer", async function () {
+        const amount = 100;
+
+        await expect(contract.mint(owner.address, amount))
+            .to.emit(contract, 'Transfer')
+            .withArgs(ethers.constants.AddressZero, owner.address, amount);
+
+        await expect(contract.transfer(accounts[1].address, amount))
+            .to.emit(contract, 'Transfer')
+            .withArgs(owner.address, accounts[1].address, amount);
+
+        await expect(contract.burn(accounts[1].address, amount))
+            .to.emit(contract, 'Transfer')
+            .withArgs(accounts[1].address, ethers.constants.AddressZero, amount);
+    });
+
+    it("Should emit Approval", async function () {
+        const amount = 100;
+
+        await contract.mint(owner.address, amount);
+
+        await expect(contract.approve(accounts[1].address, amount))
+            .to.emit(contract, 'Approval')
+            .withArgs(owner.address, accounts[1].address, amount);
+
+        const allowedAmountLeft = 10;
+        const amountToSend = amount - allowedAmountLeft;
+
+        await expect(contract.connect(accounts[1]).transferFrom(owner.address, accounts[2].address, amountToSend))
+            .to.emit(contract, 'Approval')
+            .withArgs(owner.address, accounts[1].address, allowedAmountLeft);
+    });
 })
