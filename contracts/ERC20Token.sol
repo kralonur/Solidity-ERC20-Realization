@@ -149,7 +149,7 @@ contract ERC20Token is IERC20 {
         emit Approval(owner, spender, amount);
     }
 
-    /// @dev See {IERC20-transferFrom}.
+    /// @dev See {IERC20-decimals}.
     function decimals() external pure override returns (uint8) {
         return 18;
     }
