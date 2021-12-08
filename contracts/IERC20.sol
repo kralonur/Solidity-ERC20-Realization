@@ -58,6 +58,12 @@ interface IERC20 {
     ) external returns (bool);
 
     /**
+     * @dev The amount of decimals for the token.
+     * @return result the decimals of the token.
+     */
+    function decimals() external view returns (uint8);
+
+    /**
      * @dev Emitted when given amount of token transferred between two accounts.
      * @param from sender of tokens.
      * @param to tokens recipient address.

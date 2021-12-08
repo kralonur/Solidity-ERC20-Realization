@@ -8,9 +8,6 @@ import "./IERC20.sol";
  * @author Me
  */
 contract ERC20Token is IERC20 {
-    /// Number of decimals used for the token. By default: 18.
-    uint256 public constant DECIMAL = 18;
-
     /// The total supply of the contract.
     uint256 private _totalSupply;
 
@@ -150,5 +147,10 @@ contract ERC20Token is IERC20 {
 
         _ownerSpenderAllowance[owner][spender] = amount;
         emit Approval(owner, spender, amount);
+    }
+
+    /// @dev See {IERC20-transferFrom}.
+    function decimals() external pure override returns (uint8) {
+        return 18;
     }
 }

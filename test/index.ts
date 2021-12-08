@@ -22,6 +22,12 @@ describe("ERC20Token", function () {
         await contract.deployed();
     })
 
+    it("Should have right amount of decimals", async function () {
+        // 18 decimals by default
+        expect(await contract.decimals())
+            .to.equal(18);
+    });
+
     it("Should mint token", async function () {
         await expect(contract.mint(ethers.constants.AddressZero, 0))
             .to.be.revertedWith('Account address cannot be 0');
